@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+
+header {
+  height: 30px;
+  background: orange;
+  display: block;
+}
