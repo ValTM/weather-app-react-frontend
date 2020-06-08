@@ -2,7 +2,7 @@ input {
   height: var(--inputHeight, 2rem);
   box-sizing: border-box;
   border-radius: 5px;
-  border: 3px solid #0099CC;
+  border: 3px solid #5cd1f8;
   font-size: 1rem;
   color: #2f4f4f;
   max-width: 200px

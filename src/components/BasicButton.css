@@ -3,13 +3,13 @@ button {
   height: var(--buttonHeight, 2rem);
   font-size: 1rem;
   background: #ffffff;
-  border: 3px solid #0099CC;
-  color: #2f4f4f;
+  border: 3px solid #5cd1f8;
+  color: #5cd1f8;
   box-sizing: border-box;
-  text-shadow: 1px 1px 1px #9daef5;
+  text-shadow: 1px 1px 1px #666666;
 }
 button:hover {
-  background: #0099CC;
+  background: #5cd1f8;
   color: #ffffff;
   text-shadow: none;
   cursor: pointer;
