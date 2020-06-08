@@ -210,16 +210,18 @@ export default class Dashboard extends Component<{}, IDashboardState> {
         <br/>
         <div>{this.state.currentWeatherString}</div>
         <div className="weatherInfo">
-          <table className="propsTable">
-            <thead>
-              <tr>
-                <th colSpan={2}>Current weather</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tableDom}
-            </tbody>
-          </table>
+          {this.state.currentWeather ?
+            <table className="propsTable">
+              <thead>
+                <tr>
+                  <th colSpan={2}>Current weather</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tableDom}
+              </tbody>
+            </table>
+            : null}
           <HighchartsReact
             className="chart"
             highcharts={Highcharts}
