@@ -24,7 +24,6 @@ interface ILoginComponentState {
   error: string;
   username: string;
   password: string;
-  value: string;
 }
 
 function ErrorTextDom(props: { errorText: string }) {
@@ -42,8 +41,7 @@ class Login extends Component<ILoginProps, ILoginComponentState> {
       function: Function.LOGIN,
       error: '',
       username: '',
-      password: '',
-      value: ''
+      password: ''
     };
     this.toggleRegister = this.toggleRegister.bind(this);
     this.loginOrRegister = this.loginOrRegister.bind(this);
@@ -73,6 +71,7 @@ class Login extends Component<ILoginProps, ILoginComponentState> {
     }
     try {
       const result = await aw.request('POST', destination, { username, passwordhash: Login.hashPassword(username, password) });
+      aw.setAuthorization(result.token)
       Cookies.set(authCookieName, result.token);
       this.props.history.push(ROUTES.DASHBOARD);
     } catch (e) {

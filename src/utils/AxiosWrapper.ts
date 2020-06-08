@@ -17,7 +17,11 @@ export default class AxiosWrapper {
   };
 
   public setAuthorization(authorizationCreds: string): void {
-    Object.assign(this.headers, { Authorization: authorizationCreds });
+    Object.assign(this.headers, { Authorization: `Bearer ${authorizationCreds}` });
+  }
+
+  public deleteAuthorization(): void {
+    delete this.headers.Authorization;
   }
 
   public request(method: Method = 'GET', url: string, data?: any): Promise<any> {
