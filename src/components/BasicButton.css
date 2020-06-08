@@ -8,10 +8,16 @@ button {
   box-sizing: border-box;
   text-shadow: 1px 1px 1px #666666;
 }
-button:hover {
+
+button:not([disabled]):hover {
   background: #5cd1f8;
   color: #ffffff;
   text-shadow: none;
   cursor: pointer;
   transition: 0.3s;
+}
+
+button[disabled] {
+  background: rgba(92, 209, 248, 0.3);
+  cursor: not-allowed;
 }

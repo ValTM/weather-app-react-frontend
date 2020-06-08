@@ -5,6 +5,7 @@ type ButtonProps = {
   clickHandler: (...p: any) => any;
   label?: string;
   hidden?: boolean
+  disabled?: boolean
 }
 
 export default class BasicButton extends Component<ButtonProps> {
@@ -12,7 +13,8 @@ export default class BasicButton extends Component<ButtonProps> {
     clickHandler: (...p: any) => {
     },
     label: '',
-    hidden: false
+    hidden: false,
+    disabled: false
   };
 
   constructor(params: any) {
@@ -26,7 +28,7 @@ export default class BasicButton extends Component<ButtonProps> {
 
   render() {
     return (
-      <button hidden={this.props.hidden} onClick={this.buttonClick}>{this.props.label}</button>
+      <button disabled={this.props.disabled} hidden={this.props.hidden} onClick={this.buttonClick}>{this.props.label}</button>
     );
   }
 }
