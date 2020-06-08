@@ -1,0 +1,28 @@
+.chartWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.weatherInfo {
+  display: flex;
+  max-height: 30vh;
+  flex-grow: 1
+}
+
+.propsTable {
+  font-size: 0.8rem;
+  background: white;
+  height: 100%;
+}
+
+.propsTable th {
+  text-align: start;
+  padding: 5px 0;
+  border-bottom: 1px solid;
+}
+
+.chart {
+  min-width: 400px;
+  height: 100%;
+}

@@ -10,7 +10,7 @@ html, body, #root, .App {
   flex-direction: column;
 }
 
-header {
+.App header {
   height: var(--header-height, 50px);
   background: rgb(255, 232, 124);
   border-bottom: 3px solid #5cd1f8;

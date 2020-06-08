@@ -6,7 +6,7 @@ button {
   border: 3px solid #5cd1f8;
   color: #5cd1f8;
   box-sizing: border-box;
-  text-shadow: 1px 1px 1px #666666;
+  font-weight: bold;
 }
 
 button:not([disabled]):hover {
