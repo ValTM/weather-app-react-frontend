@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './BasicButton.css';
 
 type ButtonProps = {
   clickHandler: (...p: any) => any;

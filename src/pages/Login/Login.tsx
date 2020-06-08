@@ -7,6 +7,7 @@ import { AxiosError } from 'axios';
 import { match, withRouter } from 'react-router-dom';
 import H from 'history';
 import Cookies from 'js-cookie';
+import './Login.css'
 
 enum Function {
   LOGIN = 'LOGIN',
@@ -111,11 +112,13 @@ class Login extends Component<ILoginProps, ILoginComponentState> {
         </div>
         <ErrorTextDom errorText={this.state.error}/>
         <div className="register">
+          <span>
           {login ?
             'Need an account?'
             :
             'Already have an account?'
           }
+          </span>
           <div className="link" role="link" onClick={this.toggleRegister}>{login ? 'Sign up' : 'Sign in'}</div>
         </div>
       </div>

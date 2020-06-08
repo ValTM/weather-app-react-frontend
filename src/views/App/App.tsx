@@ -24,7 +24,8 @@ const isAuthenticated = () => {
 const isAdmin = () => {
   const token = Cookies.get(authCookieName);
   if (!token) return false;
-  return (jwtDecode(token) as TokenType).permissions.includes('admin');
+  const decoded: TokenType = jwtDecode(token);
+  return decoded.permissions && decoded.permissions.includes('admin');
 };
 
 const requireLogin = (to: GuardToRoute, from: GuardFunctionRouteProps | null, next: Next) => {
@@ -40,7 +41,7 @@ const DashboardButtons = () => {
     Cookies.remove(authCookieName);
   };
   return (
-    <div className="buttons">
+    <div className="buttonsWrapper">
       <RedirectButton label="Users" to={ROUTES.USERS} hidden={!isAdmin()}/>
       <RedirectButton label="Logout" to={ROUTES.LOGIN} clickHandler={logout}/>
     </div>
@@ -48,7 +49,7 @@ const DashboardButtons = () => {
 };
 const UsersButtons = () => {
   return (
-    <div className="buttons">
+    <div className="buttonsWrapper">
       <RedirectButton label="Back" to={ROUTES.DASHBOARD}/>
     </div>
   );
@@ -58,27 +59,31 @@ const App = () => {
   return (
     <BrowserRouter history={history}>
       <div className="App">
-        <header/>
         <Switch>
           <GuardProvider guards={[requireLogin]}>
-            <div className="tooblar">
+            <header>
+              <div className="logoContainer">
+                <img className="awesomeLogo" src='weather.png' alt="logo"/>Weather Dashboard
+              </div>
               <GuardedRoute path={ROUTES.DASHBOARD} component={DashboardButtons}/>
               <GuardedRoute path={ROUTES.USERS} component={UsersButtons}/>
-            </div>
+            </header>
           </GuardProvider>
         </Switch>
         <Switch>
           <Suspense fallback={<div>Loading...</div>}>
             <GuardProvider guards={[requireLogin]}>
-              <Route exact path="/">
-                <Redirect to={ROUTES.DASHBOARD}/>
-              </Route>
-              <GuardedRoute exact path={ROUTES.LOGIN} component={Login}/>
-              <GuardedRoute path={ROUTES.DASHBOARD} component={Dashboard}/>
-              <GuardedRoute path={ROUTES.USERS} component={Users}/>
-              <Route path="*">
-                <Redirect to={ROUTES.DASHBOARD}/>
-              </Route>
+              <div className="content">
+                <Route exact path="/">
+                  <Redirect to={ROUTES.DASHBOARD}/>
+                </Route>
+                <GuardedRoute exact path={ROUTES.LOGIN} component={Login}/>
+                <GuardedRoute path={ROUTES.DASHBOARD} component={Dashboard}/>
+                <GuardedRoute path={ROUTES.USERS} component={Users}/>
+                <Route path="*">
+                  <Redirect to={ROUTES.DASHBOARD}/>
+                </Route>
+              </div>
             </GuardProvider>
           </Suspense>
         </Switch>

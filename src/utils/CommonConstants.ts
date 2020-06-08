@@ -19,4 +19,4 @@ export enum ROUTES {
 // for this one I don't have a funny joke
 export const authCookieName = 'AUTH';
 
-export type TokenType = { exp: number, sub: string, permissions: string[], iat: number }
+export type TokenType = { exp: number, sub: string, permissions?: string[], iat: number }

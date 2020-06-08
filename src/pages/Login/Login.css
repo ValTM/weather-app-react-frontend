@@ -1,0 +1,24 @@
+.loginform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginform > * {
+  margin-bottom: 5px
+}
+
+.form > input, button {
+  margin: 0 2px
+}
+
+.register span:after {
+  content: '\27A1';
+  margin: 0 3px;
+}
+
+.link {
+  display: inline;
+  text-decoration: underline;
+  cursor: pointer;
+}
