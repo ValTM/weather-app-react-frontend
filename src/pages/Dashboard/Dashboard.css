@@ -5,13 +5,18 @@
   align-items: center;
 }
 
+.chartWrapper span {
+  font-size: 1rem;
+}
+
 .inputsWrapper > input {
   margin: 0 5px;
 }
 
 .weatherInfo {
   display: flex;
-  max-height: 30vh;
+  max-height: 50vh;
+  max-width: 80%;
   flex-grow: 1
 }
 
@@ -30,4 +35,30 @@
 .chart {
   min-width: 400px;
   height: 100%;
+  max-height: 100%;
+}
+
+.chart > * {
+  height: inherit;
+}
+
+@media (orientation: portrait) {
+  .weatherInfo, .inputsWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .weatherInfo {
+    max-height: initial;
+  }
+  .inputsWrapper > input {
+    margin: 0 0 5px 0;
+  }
+  .propsTable {
+    height: min-content;
+  }
+  .chart {
+    overflow: initial;
+    min-height: 400px;
+  }
 }

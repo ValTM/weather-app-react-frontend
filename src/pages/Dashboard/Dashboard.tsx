@@ -208,7 +208,7 @@ export default class Dashboard extends Component<{}, IDashboardState> {
           <BasicButton label="Get weather" clickHandler={this.fetchWeatherData}/>
         </div>
         <br/>
-        <div>{this.state.currentWeatherString}</div>
+        <span>{this.state.currentWeatherString}</span>
         <div className="weatherInfo">
           {this.state.currentWeather ?
             <table className="propsTable">
@@ -222,11 +222,12 @@ export default class Dashboard extends Component<{}, IDashboardState> {
               </tbody>
             </table>
             : null}
-          <HighchartsReact
-            className="chart"
-            highcharts={Highcharts}
-            options={this.state.options}
-          />
+          <div className="chart">
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={this.state.options}
+            />
+          </div>
         </div>
       </div>
     );

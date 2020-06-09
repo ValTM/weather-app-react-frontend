@@ -8,8 +8,22 @@
   margin-bottom: 5px
 }
 
-.form > input, button {
+.form > input, .form > button {
   margin: 0 2px
+}
+
+@media (orientation:portrait) {
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  .form > input, .form > button {
+    margin-bottom: 5px;
+  }
+}
+
+.register span {
+  font-size: 1rem;
 }
 
 .register span:after {
