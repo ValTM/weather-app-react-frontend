@@ -58,8 +58,8 @@ class Login extends Component<ILoginProps, ILoginComponentState> {
     }
   }
 
-  private static hashPassword(username: string, password: string) {
-    return cryptojs.SHA256(username + password);
+  private static hashPassword(username: string, password: string): string {
+    return cryptojs.SHA256(username + password).toString();
   }
 
   private async loginOrRegister() {
