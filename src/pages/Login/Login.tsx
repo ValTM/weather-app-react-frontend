@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BasicInput from '../../components/BasicInput';
 import AxiosWrapper from '../../utils/AxiosWrapper';
-import { authCookieName, bckEndpoints, ROUTES } from '../../utils/CommonConstants';
+import { authCookieName, backendEndpoints, ROUTES } from '../../utils/CommonConstants';
 import cryptojs from 'crypto-js';
 import { AxiosError } from 'axios';
 import { match, withRouter } from 'react-router-dom';
@@ -35,6 +35,9 @@ function ErrorTextDom(props: { errorText: string }) {
   );
 }
 
+/**
+ * A page handling login and registration.
+ */
 class Login extends Component<ILoginProps, ILoginComponentState> {
   constructor(params: any) {
     super(params);
@@ -50,6 +53,9 @@ class Login extends Component<ILoginProps, ILoginComponentState> {
     this.inputValueChangeHandler = this.inputValueChangeHandler.bind(this);
   }
 
+  /**
+   * A simple toggle between the functionalities of the page
+   */
   private toggleRegister() {
     if (this.state.function === Function.LOGIN) {
       this.setState({ function: Function.REGISTER });
@@ -58,13 +64,23 @@ class Login extends Component<ILoginProps, ILoginComponentState> {
     }
   }
 
+  /**
+   * Hashes the password with the username as a salt.
+   * We are concious people who feel uneasy if we were about to send plaintext passwords to the backend.
+   * @param username
+   * @param password
+   */
   private static hashPassword(username: string, password: string): string {
     return cryptojs.SHA256(username + password).toString();
   }
 
+  /**
+   * A function that sends the login/registration info to the backend.
+   * It retrieves a jwt token if successfull, and takes care of the authorization process
+   */
   private async loginOrRegister() {
     const aw = AxiosWrapper.getInstance();
-    const destination = this.state.function === Function.LOGIN ? bckEndpoints.LOGIN : bckEndpoints.REGISTER;
+    const destination = this.state.function === Function.LOGIN ? backendEndpoints.LOGIN : backendEndpoints.REGISTER;
     const { username, password } = this.state;
     if (username === '' || password === '') {
       this.setError('Both fields are required!');
@@ -97,6 +113,10 @@ class Login extends Component<ILoginProps, ILoginComponentState> {
     this.updateUserInfoState('username', inputValue);
   }
 
+  /**
+   * Renders the input fields for the login/register flow.
+   * It also renders a link to switch between both flows
+   */
   render() {
     const currentFunction = this.state.function;
     const login = currentFunction === Function.LOGIN;

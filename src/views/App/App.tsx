@@ -10,12 +10,18 @@ import jwtDecode from 'jwt-decode';
 import RedirectButton from '../../components/RedirectButton';
 import AxiosWrapper from '../../utils/AxiosWrapper';
 
+/**
+ * Lazy loading of the components only when they are needed
+ */
 const Dashboard = lazy(() => import(/* webpackChunkName: "pages/Dashboard" */'../../pages/Dashboard/Dashboard'));
 const Login = lazy(() => import(/* webpackChunkName: "pages/Login" */'../../pages/Login/Login'));
 const Users = lazy(() => import(/* webpackChunkName: "pages/Users" */'../../pages/Users/Users'));
 
 const history = createBrowserHistory();
 
+/**
+ * Main class of the application
+ */
 export default class App extends Component {
   constructor(params: any) {
     super(params);
@@ -24,12 +30,18 @@ export default class App extends Component {
     }
   }
 
+  /**
+   * A check to see if the current user is authenticated
+   */
   private static isAuthenticated() {
     const token = Cookies.get(authCookieName);
     if (!token) return false;
     return (jwtDecode(token) as TokenType).exp >= Date.now().valueOf() / 1000;
   };
 
+  /**
+   * A check to see if the current authenticated user is an admin
+   */
   private static isAdmin() {
     const token = Cookies.get(authCookieName);
     if (!token) return false;
@@ -37,6 +49,12 @@ export default class App extends Component {
     return decoded.permissions && decoded.permissions.includes('admin');
   };
 
+  /**
+   * A small router guard to redirect the user to the login page if they are unauthenticated
+   * @param to
+   * @param from
+   * @param next
+   */
   private static requireLogin(to: GuardToRoute, from: GuardFunctionRouteProps | null, next: Next) {
     if (App.isAuthenticated()) {
       next();
@@ -45,6 +63,10 @@ export default class App extends Component {
     }
   };
 
+  /**
+   * Buttons to render when the dashboard page is shown
+   * @constructor
+   */
   private DashboardButtons() {
     const logout = () => {
       Cookies.remove(authCookieName);
@@ -58,6 +80,10 @@ export default class App extends Component {
     );
   };
 
+  /**
+   * Buttons to show when the user page is shown
+   * @constructor
+   */
   UsersButtons() {
     return (
       <div className="buttonsWrapper">
@@ -66,6 +92,9 @@ export default class App extends Component {
     );
   };
 
+  /**
+   * Main DOM structure. It features two switch elements - for the header buttons and for the content
+   */
   render() {
     return (
       <BrowserRouter history={history}>

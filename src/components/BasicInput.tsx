@@ -8,6 +8,9 @@ type InputProps = {
   value?: string;
 }
 
+/**
+ * A simple stylized input
+ */
 export default class BasicInput extends Component<InputProps> {
   static defaultProps: InputProps = {
     placeholder: '',

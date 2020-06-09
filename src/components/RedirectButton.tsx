@@ -14,6 +14,9 @@ type RedirectButtonProps = {
   hidden?: boolean;
 }
 
+/**
+ * A button used to trigger a redirect through the react router
+ */
 class RedirectButton extends Component<RedirectButtonProps> {
   constructor(params: any) {
     super(params);

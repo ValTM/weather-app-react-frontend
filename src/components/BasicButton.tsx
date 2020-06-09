@@ -8,6 +8,9 @@ type ButtonProps = {
   disabled?: boolean
 }
 
+/**
+ * A simple stylized button
+ */
 export default class BasicButton extends Component<ButtonProps> {
   static defaultProps: ButtonProps = {
     clickHandler: (...p: any) => {

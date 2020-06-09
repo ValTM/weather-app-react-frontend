@@ -1,8 +1,10 @@
+// This is a helper file just to keep some common information. If we had a store I would probably populate it with some if this info.
+
 // usually this would be retrieved from configuration and go in a store or something, but today we hardcode!
 export const backendUrl = 'http://localhost:4000/';
 
 // well if it were a HATEOAS API it would let you know, but it isn't
-export enum bckEndpoints {
+export enum backendEndpoints {
   LOGIN = 'login',
   REGISTER = 'register',
   WEATHER = 'weather',
