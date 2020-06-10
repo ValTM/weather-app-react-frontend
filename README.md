@@ -14,7 +14,7 @@ Run  `npm run build` for a production build that you serve yourself.
 ### Next steps
 * SCOPED SCSS
 * Introduce redux or some other state manager
-* Implement jwt refresh token flow
+* Implement JWT refresh token flow
 * Some username/password constraints
 * i18n
 * Test everything
